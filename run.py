@@ -61,10 +61,16 @@ def order_menu(worksheet, data):
     category = tabulate(category_dishes, showindex=range(1, (len(category_dishes)+1)))
     print(category)
     if category_input == "SALAD":
-        salad_order = int(input("Type dish number that you'd like to order"))
-        while salad_order > len(DISH_CATEGORY_MAP[category_input]):
-            print(category)
-            salad_order = int(input("Enter the wright option please"))
+        while True:
+            try:
+                salad_order = int(input("Type dish number that you'd like to order"))
+                if salad_order > len(DISH_CATEGORY_MAP[category_input]):
+                    print(category)
+                    continue
+            except ValueError:
+                print(category)
+                continue
+            break            
         salad_dish = DISH_CATEGORY_MAP[category_input][salad_order-1]
         print("This is your order:")
         print(f"{tabulate([salad_dish])} ")
