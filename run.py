@@ -18,6 +18,8 @@ VEGAN = VEGAN_DATA.get_all_values()
 VEGETERIAN_DATA = SHEET.worksheet("vegeterian")
 VEGETERIAN = VEGETERIAN_DATA.get_all_values()
 
+data = []
+
 
 def parse_menu(worksheet_data):
     """
@@ -37,15 +39,12 @@ Choose an option, 1 or 2:
 """
 
 
-
 def validate_order(category_input):
     """
     Validate data from category_input
     """
     if category_input in DISH_CATEGORY_MAP.keys():
         return True
-
-
 
 
 def order_menu(worksheet, data):
@@ -96,6 +95,8 @@ def update_worksheet(data):
     Function that update "orders" worksheet
     """
     SHEET.worksheet("orders").insert_rows(data)
+
+
 def validate_data(data_name):
     """
     Function that validate data from data_name input
@@ -107,8 +108,6 @@ def validate_data(data_name):
         print("Type a valid name")
 
     return is_valid_name
-
-
 
 
 def main():
