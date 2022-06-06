@@ -70,7 +70,7 @@ def order_menu(worksheet, data):
             except ValueError:
                 print(category)
                 continue
-            break            
+            break
         salad_dish = DISH_CATEGORY_MAP[category_input][order-1]
         print("This is your order:")
         print(f"{tabulate([salad_dish])} ")
@@ -85,13 +85,12 @@ def order_menu(worksheet, data):
             except ValueError:
                 print(category)
                 continue
-            break 
+            break
         pizza_dish = DISH_CATEGORY_MAP[category_input][order-1]
         print("This is your order:")
         print(f"{tabulate([pizza_dish])} ")
         data.append(pizza_dish[0:2])
-       
-    elif category_input == "BURGER": 
+    elif category_input == "BURGER:
         while True:
             try:
                 order = int(input("Type dish number that you'd like to order"))
@@ -101,7 +100,7 @@ def order_menu(worksheet, data):
             except ValueError:
                 print(category)
                 continue
-            break 
+            break
         burger_dish = DISH_CATEGORY_MAP[category_input][order - 1]
         print("This is your order:")
         print(f"{tabulate([burger_dish])} ")
