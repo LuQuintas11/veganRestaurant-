@@ -30,7 +30,74 @@ def parse_menu(worksheet_data):
 DISH_CATEGORY_MAP = parse_menu(VEGAN)
 
 
+USER_OPTIONS = """
+Choose an option, 1 or 2:
+    1. Vegan
+    2. Vegeterian.
+"""
 
+
+
+
+def order_menu(worksheet, data):
+    """
+    Functions that show the menua and take order from user input
+    """
+    print("Type what you would prefer:")
+    category_input = (input(tabulate([DISH_CATEGORY_MAP.keys()]))).upper()
+    while not validate_order(category_input):
+        print("Choose from the different categories: Salad, Pizza or Burger")
+        category_input = (input(tabulate([DISH_CATEGORY_MAP.keys()]))).upper()
+        print(f"{category_input}:")
+    category_dishes = DISH_CATEGORY_MAP[category_input]
+    category = tabulate(category_dishes, showindex=range(1, (len(category_dishes)+1)))
+    print(category)
+    if category_input == "SALAD":
+        salad_order = int(input("Type dish number that you'd like to order"))
+        while salad_order > len(DISH_CATEGORY_MAP[category_input]):
+            print(category)
+            salad_order = int(input("Enter the wright option please"))
+        salad_dish = DISH_CATEGORY_MAP[category_input][salad_order-1]
+        print("This is your order:")
+        print(f"{tabulate([salad_dish])} ")
+        data.append(salad_dish[0:2])
+    elif category_input == "PIZZA":
+        pizza_order = int(input("Type dish number that you'd like to order"))
+        try:
+            pizza_dish = DISH_CATEGORY_MAP["PIZZA"][pizza_order - 1]
+            print("This is your order:")
+            print(f"{tabulate([pizza_dish])} ")
+            data.append(pizza_dish[0:2])
+        except IndexError():
+            print("Choose a correct option")
+    elif category_input == "BURGER":
+        burger_order = int(input("Type dish number that you'd like to order"))
+        try:
+            burger_dish = DISH_CATEGORY_MAP["PIZZA"][burger_order - 1]
+            print("This is your order:")
+            print(f"{tabulate([burger_dish])}")
+            data.append(burger_dish[0:2])
+        except IndexError():
+            print("Choose a correct option")
+    return data
+
+
+def update_worksheet(data):
+    """
+    Function that update "orders" worksheet
+    """
+    SHEET.worksheet("orders").insert_rows(data)
+def validate_data(data_name):
+    """
+    Function that validate data from data_name input
+    """
+    is_valid_name = data_name.isalpha()
+
+    if not is_valid_name:
+
+        print("Type a valid name")
+
+    return is_valid_name
 
 
 
