@@ -38,6 +38,15 @@ Choose an option, 1 or 2:
 
 
 
+def validate_order(category_input):
+    """
+    Validate data from category_input
+    """
+    if category_input in DISH_CATEGORY_MAP.keys():
+        return True
+
+
+
 
 def order_menu(worksheet, data):
     """
