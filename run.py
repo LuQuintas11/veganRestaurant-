@@ -63,36 +63,49 @@ def order_menu(worksheet, data):
     if category_input == "SALAD":
         while True:
             try:
-                salad_order = int(input("Type dish number that you'd like to order"))
-                if salad_order > len(DISH_CATEGORY_MAP[category_input]):
+                order = int(input("Type dish number that you'd like to order"))
+                if order > len(DISH_CATEGORY_MAP[category_input]):
                     print(category)
                     continue
             except ValueError:
                 print(category)
                 continue
             break            
-        salad_dish = DISH_CATEGORY_MAP[category_input][salad_order-1]
+        salad_dish = DISH_CATEGORY_MAP[category_input][order-1]
         print("This is your order:")
         print(f"{tabulate([salad_dish])} ")
         data.append(salad_dish[0:2])
     elif category_input == "PIZZA":
-        pizza_order = int(input("Type dish number that you'd like to order"))
-        try:
-            pizza_dish = DISH_CATEGORY_MAP["PIZZA"][pizza_order - 1]
-            print("This is your order:")
-            print(f"{tabulate([pizza_dish])} ")
-            data.append(pizza_dish[0:2])
-        except IndexError():
-            print("Choose a correct option")
-    elif category_input == "BURGER":
-        burger_order = int(input("Type dish number that you'd like to order"))
-        try:
-            burger_dish = DISH_CATEGORY_MAP["PIZZA"][burger_order - 1]
-            print("This is your order:")
-            print(f"{tabulate([burger_dish])}")
-            data.append(burger_dish[0:2])
-        except IndexError():
-            print("Choose a correct option")
+        while True:
+            try:
+                order = int(input("Type dish number that you'd like to order"))
+                if order > len(DISH_CATEGORY_MAP[category_input]):
+                    print(category)
+                    continue
+            except ValueError:
+                print(category)
+                continue
+            break 
+        pizza_dish = DISH_CATEGORY_MAP[category_input][order-1]
+        print("This is your order:")
+        print(f"{tabulate([pizza_dish])} ")
+        data.append(pizza_dish[0:2])
+       
+    elif category_input == "BURGER": 
+        while True:
+            try:
+                order = int(input("Type dish number that you'd like to order"))
+                if order > len(DISH_CATEGORY_MAP[category_input]):
+                    print(category)
+                    continue
+            except ValueError:
+                print(category)
+                continue
+            break 
+        burger_dish = DISH_CATEGORY_MAP[category_input][order - 1]
+        print("This is your order:")
+        print(f"{tabulate([burger_dish])} ")
+        data.append(burger_dish[0:2])
     return data
 
 
