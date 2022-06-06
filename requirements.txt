@@ -1,1 +1,4 @@
 # Your requirements go here
+gspread=5.4.0
+
+tabulate=0.8.9
