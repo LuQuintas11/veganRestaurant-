@@ -23,9 +23,8 @@ data = []
 
 USER_OPTIONS = """
 Choose an option, 1 or 2:
-    1. Vegan
-    2. Vegeterian
-    3. Drinks
+    1. Vegan.
+    2. Vegeterian.
 """
 
 
@@ -136,7 +135,7 @@ def main():
     """
     print("Welcome to Happy Cow Restaurant")
     print("Everything is vegan or vegeterian and definitely delicious.")
-    print("We offer Salad, Burger and Pizzas and Drinks")
+    print("We offer Salads, Burgers and Pizzas.")
     data_name = input("Please tell us your name:")
 
     while not validate_data(data_name):
