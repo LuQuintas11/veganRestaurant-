@@ -21,25 +21,25 @@ VEGETERIAN = VEGETERIAN_DATA.get_all_values()
 data = []
 
 
-def parse_menu(worksheet_data):
+USER_OPTIONS = """
+Choose an option, 1 or 2:
+    1. Vegan
+    2. Vegeterian
+    3. Drinks
+"""
+
+
+def parse_menu(worksheet):
     """
     Parse values from the different worksheets and create a dict with them
     """
     menu_category_dict = defaultdict(list)
-    for row in worksheet_data[1:]:
+    for row in worksheet[1:]:
         menu_category_dict[row[0]].append(row)
     return menu_category_dict
-DISH_CATEGORY_MAP = parse_menu(VEGAN)
 
 
-USER_OPTIONS = """
-Choose an option, 1 or 2:
-    1. Vegan
-    2. Vegeterian.
-"""
-
-
-def validate_order(category_input):
+def validate_order(category_input, DISH_CATEGORY_MAP):
     """
     Validate data from category_input
     """
@@ -51,9 +51,10 @@ def order_menu(worksheet, data):
     """
     Functions that show the menua and take order from user input
     """
+    DISH_CATEGORY_MAP = parse_menu(worksheet)
     print("Type what you would prefer:")
     category_input = (input(tabulate([DISH_CATEGORY_MAP.keys()]))).upper()
-    while not validate_order(category_input):
+    while not validate_order(category_input, DISH_CATEGORY_MAP):
         print("Choose from the different categories: Salad, Pizza or Burger")
         category_input = (input(tabulate([DISH_CATEGORY_MAP.keys()]))).upper()
     category_dishes = DISH_CATEGORY_MAP[category_input]
@@ -104,7 +105,6 @@ def order_menu(worksheet, data):
         print("This is what you choose:")
         print(f"{tabulate([burger_dish])} ")
         data.append(burger_dish[0:2])
-    
     print("This is your complete order")
     print(f"{tabulate(data[1:])}")
     return data
@@ -134,8 +134,9 @@ def main():
     """
     Get name and order input from user
     """
-    print("Welcome to The Sunshine Inn.")
-    print("Everything is vegan/vegeterian and definitely delicious.")
+    print("Welcome to Happy Cow Restaurant")
+    print("Everything is vegan or vegeterian and definitely delicious.")
+    print("We offer Salad, Burger and Pizzas and Drinks")
     data_name = input("Please tell us your name:")
 
     while not validate_data(data_name):
@@ -168,7 +169,8 @@ def main():
             update_worksheet(data)
             print(f"This is your order {data_name}:")
             print(f"{tabulate(data[1:])}")
-            print("Thank you for choosing us")
+            print("We are preparing your food.Thank you for choosing us")
             break
 if __name__ == "__main__":
     main()
+

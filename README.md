@@ -39,7 +39,7 @@ I have manually tested this project by doing:
 
 ## Validator testing:
 - I got this warning when I run the code in PEP8 validator:
-[screenchot]
-After check my code a few times I could not find the way to get rid of them
+![PEP8:](/images/PEP8.png)
+After check my code a few times I could not find the way to change the code lines and fix it. 
 
 ## Deployment 
