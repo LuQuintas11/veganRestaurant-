@@ -152,12 +152,12 @@ def main():
             data_menu = None
         if data_menu == 1:
             print("Check our menu:")
-            print(tabulate(VEGAN, tablefmt="grid"))
+            print(tabulate(VEGAN, tablefmt="simple"))
             order_menu(VEGAN, data)
             parse_menu(VEGAN)
         elif data_menu == 2:
             print("Check our menu:")
-            print(tabulate(VEGETERIAN, tablefmt='grid'))
+            print(tabulate(VEGETERIAN, tablefmt='simple'))
             order_menu(VEGETERIAN, data)
             parse_menu(VEGETERIAN)
         else:
