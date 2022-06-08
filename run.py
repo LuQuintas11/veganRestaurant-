@@ -56,7 +56,6 @@ def order_menu(worksheet, data):
     while not validate_order(category_input):
         print("Choose from the different categories: Salad, Pizza or Burger")
         category_input = (input(tabulate([DISH_CATEGORY_MAP.keys()]))).upper()
-        print(f"{category_input}:")
     category_dishes = DISH_CATEGORY_MAP[category_input]
     category = tabulate(category_dishes, showindex=range(1, (len(category_dishes)+1)))
     print(category)
@@ -72,7 +71,7 @@ def order_menu(worksheet, data):
                 continue
             break
         salad_dish = DISH_CATEGORY_MAP[category_input][order-1]
-        print("This is your order:")
+        print("This is what you choose:")
         print(f"{tabulate([salad_dish])} ")
         data.append(salad_dish[0:2])
     elif category_input == "PIZZA":
@@ -87,10 +86,10 @@ def order_menu(worksheet, data):
                 continue
             break
         pizza_dish = DISH_CATEGORY_MAP[category_input][order-1]
-        print("This is your order:")
+        print("This is what you choose:")
         print(f"{tabulate([pizza_dish])} ")
         data.append(pizza_dish[0:2])
-    elif category_input == "BURGER:
+    elif category_input == "BURGER":
         while True:
             try:
                 order = int(input("Type dish number that you'd like to order"))
@@ -102,9 +101,12 @@ def order_menu(worksheet, data):
                 continue
             break
         burger_dish = DISH_CATEGORY_MAP[category_input][order - 1]
-        print("This is your order:")
+        print("This is what you choose:")
         print(f"{tabulate([burger_dish])} ")
         data.append(burger_dish[0:2])
+    
+    print("This is your complete order")
+    print(f"{tabulate(data[1:])}")
     return data
 
 
@@ -149,10 +151,12 @@ def main():
         except ValueError:
             data_menu = None
         if data_menu == 1:
+            print("Check our menu:")
             print(tabulate(VEGAN, tablefmt='grid'))
             order_menu(VEGAN, data)
             parse_menu(VEGAN)
         elif data_menu == 2:
+            print("Check our menu:")
             print(tabulate(VEGETERIAN, tablefmt='grid'))
             order_menu(VEGETERIAN, data)
             parse_menu(VEGETERIAN)

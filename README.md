@@ -1,31 +1,45 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Sunshine Inn Restaurant
 
-Welcome LuQuintas11,
+This python code allows Sunshine Inns restaurant's customer check the menu and choose what they want order from it. It is a all vegan/vegeterian restaurant.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+## Features:
 
-## Reminders
+- It starts by welcoming the user and asking them which menu they would prefer: Vegan or Vegeterian;
+[screenshot]
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+- After chossing from the two option of menu and specific menu is display:
+[screenshot]
 
-## Creating the Heroku app
+- User can see all the dishes  they have between Salad, Pizza or Burgers. Each of the dishes has discription, calories and cooking time.
+[screenshot]
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+- Users can say if they finish they order or if they prefer to keep ordering:
+[screenshot]
 
-1. `heroku/python`
-2. `heroku/nodejs`
+- Once user finish they order, the order worksheet is updated and this way the cook can see the name of the customer and every dish they have ordered 
+[screenshot]
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+## Input validation:
+-Users must provide a valid name
+-There is one input that only accepts the words Salad, Pizza, or Burger
+-The rest of the input accepts only integers within the range
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
 
-Connect your GitHub repository and deploy as normal.
+## Testing
+I have manually tested this project by doing:
+- Pased the code throught a PEP8 
+- Given invalid inputs: string where numbers are expected, numbers where strings are expected, out of range inputs
+- Tested in the local terminal and the Code Institute Heroku terminal
 
-## Constraints
+## Bugs
+-When I was writing the code I was not able to update the orders worksheet: I was having a error message every time. This was because I was trying to append a two dimensional list. Using a different method (insert_rows) I was able to update the worksheet
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+- The creds.json file was dissapearing every time I was closing the workspace. I had to create a new repository to fix the problem. Because of this there are not enough commits
+- Every time I was opening the workspace I had to install gspread and tabulate modules. I fixed it typing this two modules in the requirements.txt files
 
------
-Happy coding!
+## Validator testing:
+- I got this warning when I run the code in PEP8 validator:
+[screenchot]
+After check my code a few times I could not find the way to get rid of them
+
+## Deployment 
