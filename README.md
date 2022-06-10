@@ -33,6 +33,12 @@ This python code allows The Happy Cow restaurant's customers check the menu and 
 - There is one input that only accepts the words Salad, Pizza, or Burger
 - The rest of the input accepts only integers within the range
 
+## Data model:
+This project was created using different APIS and modules:
+- gspread: to be able to open and get all the values from the menu created in Google Sheets
+- collestions/difaultdict: store data in a dictionary even if some values are missing. 
+The rest of the code are functions with if/else statements to have access to the different menu options. While loops and try/except statement were used to validate the different user inputs. 
+
 
 ## Testing
 I have manually tested this project by doing:
