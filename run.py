@@ -59,53 +59,23 @@ def order_menu(worksheet, data):
     category_dishes = DISH_CATEGORY_MAP[category_input]
     category = tabulate(category_dishes, showindex=range(1, (len(category_dishes)+1)))
     print(category)
-    if category_input == "SALAD":
-        while True:
-            try:
-                order = int(input("Type dish number that you'd like to order"))
-                if order > len(DISH_CATEGORY_MAP[category_input]):
-                    print(category)
-                    continue
-            except ValueError:
-                print(category)
+    while True:
+        try:
+            order = int(input("Type dish number that you'd like to order"))
+            if order > len(DISH_CATEGORY_MAP[category_input]):
                 continue
-            break
-        salad_dish = DISH_CATEGORY_MAP[category_input][order-1]
-        print("This is what you choose:")
-        print(f"{tabulate([salad_dish])} ")
-        data.append(salad_dish[0:2])
-    elif category_input == "PIZZA":
-        while True:
-            try:
-                order = int(input("Type dish number that you'd like to order"))
-                if order > len(DISH_CATEGORY_MAP[category_input]):
-                    print(category)
-                    continue
-            except ValueError:
-                print(category)
-                continue
-            break
-        pizza_dish = DISH_CATEGORY_MAP[category_input][order-1]
-        print("This is what you choose:")
-        print(f"{tabulate([pizza_dish])} ")
-        data.append(pizza_dish[0:2])
-    elif category_input == "BURGER":
-        while True:
-            try:
-                order = int(input("Type dish number that you'd like to order"))
-                if order > len(DISH_CATEGORY_MAP[category_input]):
-                    print(category)
-                    continue
-            except ValueError:
-                print(category)
-                continue
-            break
-        burger_dish = DISH_CATEGORY_MAP[category_input][order - 1]
-        print("This is what you choose:")
-        print(f"{tabulate([burger_dish])} ")
-        data.append(burger_dish[0:2])
+        except ValueError:
+            continue
+        break
+    order_dish = DISH_CATEGORY_MAP[category_input][order-1]
+    
+    print("This is what you choose:")
+    print(f"{tabulate([order_dish])}")
+    data.append(order_dish[0:2])
+
     print("This is your complete order")
     print(f"{tabulate(data[1:])}")
+
     return data
 
 
@@ -116,11 +86,11 @@ def update_worksheet(data):
     SHEET.worksheet("orders").insert_rows(data)
 
 
-def validate_data(data_name):
+def validate_data(user_name):
     """
-    Function that validate data from data_name input
+    Function that validate data from user_name input
     """
-    is_valid_name = data_name.isalpha()
+    is_valid_name = user_name.isalpha()
 
     if not is_valid_name:
 
@@ -136,37 +106,35 @@ def main():
     print("Welcome to Happy Cow Restaurant")
     print("Everything is vegan or vegeterian and definitely delicious.")
     print("We offer Salads, Burgers and Pizzas.")
-    data_name = input("Please tell us your name:")
+    user_name = input("Please tell us your name:")
 
-    while not validate_data(data_name):
+    while not validate_data(user_name):
 
-        data_name = input("What is your name:")
+        user_name = input("What is your name:")
 
-    print(f"Hello {data_name}. We are ready to take your order!")
+    print(f"Hello {user_name}. We are ready to take your order!")
 
-    data.append([data_name])
+    data.append([user_name])
     while True:
         try:
-            data_menu = int(input(USER_OPTIONS))
+            user_input = int(input(USER_OPTIONS))
         except ValueError:
-            data_menu = None
-        if data_menu == 1:
+            user_input = None
+        if user_input == 1:
             print("Check our menu:")
             print(tabulate(VEGAN, tablefmt="simple"))
             order_menu(VEGAN, data)
-            parse_menu(VEGAN)
-        elif data_menu == 2:
+        elif user_input == 2:
             print("Check our menu:")
             print(tabulate(VEGETERIAN, tablefmt='simple'))
             order_menu(VEGETERIAN, data)
-            parse_menu(VEGETERIAN)
         else:
             print("Choose option 1 for Vegan or option 2 for Vegeterian")
             continue
         another_order = input("Do you want to order anything else? (Y/N)")
         if another_order.upper() != "Y":
             update_worksheet(data)
-            print(f"This is your order {data_name}:")
+            print(f"This is your order {user_name}:")
             print(f"{tabulate(data[1:])}")
             print("We are preparing your food.Thank you for choosing us")
             break
